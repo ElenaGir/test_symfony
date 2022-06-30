@@ -1,0 +1,21 @@
+# controllers:
+#     resource: ../src/Controller/
+#     type: attribute
+index:
+    path: /
+    controller: App\Controller\TestController::index
+
+test:
+    path: /test/{age<\d+>?0}
+    controller: App\Controller\TestController::test
+    methods: [POST, GET]
+    # pour le controle de host depuis lequel on peut acceder
+    # host: localhost 
+    # schemes: [https, http]
+    # {subdomain}monsite.com
+
+    # defaults:
+    #     age: 0
+    # requirements:
+    #     age: \d+
+    
