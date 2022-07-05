@@ -2,19 +2,23 @@
 
 namespace App\Controller;
 
+use App\Taxes\Calculator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TestController
 {
-    public function index()
+   
+     /**
+     * @Route("/", name="index", methods={"GET", "POST"}, host="localhost", schemes={"http", "https"})
+     */
+    public function index(Calculator $calculator)
     {
+        $tva = $calculator->calcul(100);
+        dump($tva);
         dd("ca fonctionne");
     }
-// une autre façon de configurer une route sans passer par le ficher .yaml est ecrire dans le commentaire commz ci-dessus
-// avec @Route (avec majusqule). 
-// pour que symfony puisse gerer le données en commentaires il faut installer des packedges supplementaires symfony flex
 
 
     /**
@@ -23,12 +27,12 @@ class TestController
 
 
     // click droit sut @Route et choisir import class on propose 2, il faut choisir celle avec Annotation.
-    // cela nous mettra en olace le bon "use"
+    // cela nous mettra en place le bon "use"
     public function  test(Request $request, $age)
     {  
         dump($request);
         
         //  soit on ecrit cette ligne: $age = $request->attributes->get('age'); soit on passe $age directement dans les parametres de la function
-        dd("vous avez $age ans");
+        return new Response("vous avez $age ans");
     }
 }
