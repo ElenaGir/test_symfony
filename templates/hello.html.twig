@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<h1>
+		Hello
+		{{prenom}}
+		!
+	</h1>
+	<ul>
+		{% for age in ages %}
+			<li>
+				{% if age >= 18 %}
+					Adult
+				{% else %}
+					Enfant
+				{% endif %}
+			</li>
+		{% endfor %}
+		<p>Mon formateur s'appele
+			<strong>{{ formateur0.prenom}}</strong>
+			{{ formateur0.nom }}
+			et il a
+			{{ formateur0.age}}
+			ans !
+		</p>
+		<h2>Nos formateurs
+		</h2>
+		{% include "_formateur.html.twig" with {"formateur": formateur1} %}
+		{% include "_formateur.html.twig" with {"formateur": formateur2} %}
+
+	{% endblock %}
+	{% block title %}
+		Hello
+		{{prenom}}
+
+	{% endblock %}
